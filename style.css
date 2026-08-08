@@ -1,0 +1,561 @@
+/* =========================================================
+   MAZHAB PERSONAL WEBSITE
+   Minimal Light Theme
+   Font: Outfit
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #111111;
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   TOP HEADER
+   ========================================================= */
+
+.top-header {
+  width: 100%;
+  height: 70px;
+
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* Logo */
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+
+  text-decoration: none;
+}
+
+.site-logo img {
+  display: block;
+
+  width: 45px;
+  height: 45px;
+
+  object-fit: contain;
+}
+
+
+/* Navigation */
+
+.top-navigation {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.top-navigation a {
+  color: #666666;
+  text-decoration: none;
+
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+
+  transition: color 0.2s ease;
+}
+
+.top-navigation a:hover {
+  color: #111111;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.site-container {
+  width: min(100% - 40px, 620px);
+
+  margin: 0 auto;
+
+  padding-top: 104px;
+  padding-bottom: 80px;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.intro {
+  margin-bottom: 100px;
+}
+
+.profile-image {
+  display: block;
+
+  width: 92px;
+  height: 92px;
+
+  object-fit: cover;
+
+  border-radius: 9px;
+
+  margin-bottom: 29px;
+}
+
+.intro h1 {
+  max-width: 570px;
+
+  font-size: 26px;
+  line-height: 1.3;
+
+  font-weight: 500;
+
+  letter-spacing: -0.45px;
+
+  margin-bottom: 17px;
+}
+
+.intro p {
+  max-width: 570px;
+
+  font-size: 16px;
+  line-height: 1.65;
+
+  font-weight: 300;
+
+  color: #666666;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.content-section {
+  margin-bottom: 88px;
+}
+
+.content-section h2 {
+  font-size: 14px;
+  line-height: 1.4;
+
+  font-weight: 400;
+
+  color: #888888;
+
+  margin-bottom: 27px;
+}
+
+
+/* =========================================================
+   LINK LIST
+   ========================================================= */
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 29px;
+}
+
+
+/* Individual item */
+
+.link-item {
+  display: block;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Title */
+
+.link-item-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  font-weight: 500;
+
+  letter-spacing: -0.1px;
+
+  color: #111111;
+
+  transition: color 0.2s ease;
+}
+
+
+/* Arrow */
+
+.link-item-title .arrow {
+  display: inline-block;
+
+  font-size: 15px;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* Description */
+
+.link-item-description {
+  max-width: 540px;
+
+  margin-top: 6px;
+
+  font-size: 14px;
+  line-height: 1.6;
+
+  font-weight: 300;
+
+  color: #777777;
+}
+
+
+/* Hover */
+
+.link-item:hover .link-item-title {
+  color: #666666;
+}
+
+.link-item:hover .arrow {
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   SEE ALL
+   ========================================================= */
+
+.see-all {
+  display: inline-block;
+
+  margin-top: 32px;
+
+  color: #111111;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  font-weight: 500;
+
+  transition: color 0.2s ease;
+}
+
+.see-all:hover {
+  color: #777777;
+}
+
+
+/* =========================================================
+   CURRENTLY
+   ========================================================= */
+
+.currently-section {
+  margin-bottom: 105px;
+}
+
+#currently-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.currently-item {
+  font-size: 15px;
+  line-height: 1.65;
+
+  font-weight: 300;
+
+  color: #555555;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  padding-top: 36px;
+
+  border-top: 1px solid #eeeeee;
+}
+
+.footer-name {
+  font-size: 16px;
+  line-height: 1.5;
+
+  font-weight: 500;
+
+  color: #111111;
+
+  margin-bottom: 3px;
+}
+
+.footer-role {
+  font-size: 14px;
+  line-height: 1.5;
+
+  font-weight: 300;
+
+  color: #888888;
+
+  margin-bottom: 21px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-bottom: 27px;
+}
+
+.footer-links a {
+  color: #555555;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  font-weight: 400;
+
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #111111;
+}
+
+.copyright {
+  font-size: 12px;
+  line-height: 1.5;
+
+  font-weight: 300;
+
+  color: #aaaaaa;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: #111111;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .top-header {
+    height: 68px;
+
+    padding: 0 20px;
+  }
+
+  .site-logo img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .top-navigation {
+    gap: 18px;
+  }
+
+  .top-navigation a {
+    font-size: 14px;
+  }
+
+
+  .site-container {
+    width: calc(100% - 32px);
+
+    padding-top: 62px;
+    padding-bottom: 60px;
+  }
+
+
+  .intro {
+    margin-bottom: 76px;
+  }
+
+
+  .profile-image {
+    width: 78px;
+    height: 78px;
+
+    border-radius: 8px;
+
+    margin-bottom: 25px;
+  }
+
+
+  .intro h1 {
+    font-size: 23px;
+    line-height: 1.32;
+
+    letter-spacing: -0.3px;
+
+    margin-bottom: 15px;
+  }
+
+
+  .intro p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+
+  .content-section {
+    margin-bottom: 70px;
+  }
+
+
+  .content-section h2 {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+
+
+  .link-list {
+    gap: 26px;
+  }
+
+
+  .link-item-title {
+    font-size: 16px;
+  }
+
+
+  .link-item-description {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+
+  .see-all {
+    margin-top: 27px;
+    font-size: 14px;
+  }
+
+
+  .currently-section {
+    margin-bottom: 78px;
+  }
+
+
+  .currently-item {
+    font-size: 14px;
+  }
+
+
+  footer {
+    padding-top: 30px;
+  }
+
+
+  .footer-links {
+    gap: 14px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .top-navigation {
+    gap: 13px;
+  }
+
+  .top-navigation a {
+    font-size: 13px;
+  }
+
+  .site-container {
+    width: calc(100% - 28px);
+  }
+
+  .intro h1 {
+    font-size: 21px;
+  }
+
+  .intro p {
+    font-size: 14px;
+  }
+
+  .link-item-title {
+    font-size: 15px;
+  }
+}
+/* =========================================================
+   INTRO TITLE — CHARACTER HOVER
+   ========================================================= */
+
+.intro h1 {
+  cursor: default;
+}
+
+.intro-character {
+  display: inline-block;
+  opacity: 1;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* When hovering anywhere over the title,
+   fade all characters */
+
+.intro h1:hover .intro-character {
+  opacity: 0.18;
+}
+
+
+/* Keep the character directly under the pointer visible */
+
+.intro-character:hover {
+  opacity: 1 !important;
+  transform: translateY(-1px);
+}
