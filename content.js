@@ -206,7 +206,7 @@ const siteContent = {
 
       {
         label: "Email",
-        url: "mazhab21@gmail.com"
+        url: "mailto:mazhab21@gmail.com"
       }
 
     ],
