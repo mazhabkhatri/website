@@ -1,159 +1,185 @@
 /* =========================================================
    MAZHAB WEBSITE CONTENT
    =========================================================
-   EDIT THIS FILE to change your website text, links, posts,
-   resources, social links, etc.
 
-   You can:
-   - Change text
-   - Change links
-   - Add new items
-   - Remove items
+   Edit this file whenever you want to change:
+   - Navigation
+   - Hero text
+   - Content links
+   - Digital products
+   - Logo Design projects
+   - Brand Identity projects
+   - Social links
+   - Footer text
+
+   Keep all files in the main Mazhab-Website folder.
    ========================================================= */
 
 
 const siteContent = {
 
+
   /* =======================================================
-     TOP NAVIGATION
+     NAVIGATION
      ======================================================= */
 
   navigation: [
 
     {
-      name: "Connect",
-      url: "https://www.instagram.com/mazhabkhatri?igshid=NTc4MTIwNjQ2YQ%3D%3D"
+      label: "Connect",
+      url: "#footer"
     },
 
     {
-      name: "Work",
-      url: "https://www.youtube.com/@Flamingo.academy"
+      label: "Work",
+      url: "#design-section"
     },
 
     {
-      name: "Store",
-      url: "https://mintlink.in/c/mazhabkhatri"
+      label: "Store",
+      url: "#digital-products-section"
     }
 
   ],
 
+
   /* =======================================================
-     INTRO
+     HERO
      ======================================================= */
 
-  intro: {
-    title: "I'm Mazhab — a creator, designer and teacher.",
+  hero: {
+
+    name: "mazhab",
+
+    tagline: "a boy who follows his passion.",
+
+    intro: "I'm Mazhab.",
+
+    role: "Creator · Designer · Teacher",
 
     description:
-      "I create content, digital products and creative work around design, productivity, creativity and education."
+      "I create content, design visual work, and make useful digital products."
+
   },
 
 
   /* =======================================================
-     CREATING
+     CONTENT
      ======================================================= */
 
-  creating: [
-
-    {
-      title: "Content Creation",
-      description:
-        "Videos, photography, creative projects and things I'm learning along the way.",
-      link: "#"
-    },
-
-    {
-      title: "Design",
-      description:
-        "Visual design, branding, digital experiences and creative experiments.",
-      link: "#"
-    },
-
-    {
-      title: "Digital Products",
-      description:
-        "Simple, practical templates, trackers, guides and resources designed to solve real problems.",
-      link: "#"
-    },
+  content: [
 
     {
       title: "Flamingo Academy",
-      description:
-        "Educational content, resources and ideas focused on mathematics, learning and teaching.",
-      link: "#"
+      description: "Educational content and mathematics.",
+      url: "https://www.youtube.com/@Flamingo.academy"
+    },
+
+    {
+      title: "YouTube",
+      description: "Videos about productivity, creativity and more.",
+      url: "https://www.youtube.com/@MazhabKhatri"
+    },
+
+    {
+      title: "Photography & Video",
+      description: "Visual stories and creative work.",
+      url: "#"
     }
 
   ],
 
 
   /* =======================================================
-     RESOURCES
+     DIGITAL PRODUCTS
      ======================================================= */
 
-  resources: [
+  digitalProducts: [
 
     {
-      title: "Productivity",
-      link: "#"
+      title: "Productivity Tools",
+      description: "A minimal kaizen and habit tracker.",
+      url: "https://mintlink.in/c/mazhabkhatri"
     },
 
     {
-      title: "Design",
-      link: "#"
+      title: "Educational Resources",
+      description: "Study resources for competitive exams",
+      url: "https://mintlink.in/c/mazhabkhatri/storefront-c5dd93e7"
     },
 
     {
-      title: "Creator Setup",
-      link: "#"
+      title: "Wallpapers",
+      description: "Minimal wallpapers for your devices.",
+      url: "https://mintlink.in/m/gradient-orb-wallpaper-pack-desktop-mobile-8e79dffc"
     },
 
     {
-      title: "Education",
-      link: "#"
+      title: "Book Review Session",
+      description: "Coming soon!",
+      url: "#"
     }
 
   ],
 
 
   /* =======================================================
-     POSTS
+     DESIGN
      ======================================================= */
 
-  posts: [
-
-    {
-      title: "Things I'm Learning About Content Creation",
-      link: "#"
-    },
-
-    {
-      title: "My Approach to Design",
-      link: "#"
-    },
-
-    {
-      title: "Tools I Actually Use",
-      link: "#"
-    }
-
-  ],
-
-  postsAllLink: "#",
+  design: {
 
 
-  /* =======================================================
-     CURRENTLY
-     ======================================================= */
+    /* =====================================================
+       LOGO DESIGN
+       ===================================================== */
 
-  currently: [
+    logoDesign: [
 
-    "Creating content.",
-    "Designing.",
-    "Building digital products.",
-    "Growing Flamingo Academy.",
-    "Teaching and learning every day."
+      {
+        title: "Logo Project One",
+        year: "2026",
+        category: "Logo Design",
+        image: "logo-project-1.jpg",
+        url: "#"
+      },
 
-  ],
+      {
+        title: "Logo Project Two",
+        year: "2026",
+        category: "Logo Design",
+        image: "logo-project-2.jpg",
+        url: "#"
+      }
+
+    ],
+
+
+    /* =====================================================
+       BRAND IDENTITY
+       ===================================================== */
+
+    brandIdentity: [
+
+      {
+        title: "Brand Identity One",
+        year: "2026",
+        category: "Brand Identity",
+        image: "brand-project-1.jpg",
+        url: "#"
+      },
+
+      {
+        title: "Brand Identity Two",
+        year: "2026",
+        category: "Brand Identity",
+        image: "brand-project-2.jpg",
+        url: "#"
+      }
+
+    ]
+
+  },
 
 
   /* =======================================================
@@ -169,18 +195,18 @@ const siteContent = {
     links: [
 
       {
-        name: "Instagram",
-        url: "#"
+        label: "Instagram",
+        url: "https://www.instagram.com/mazhabkhatri?igshid=NTc4MTIwNjQ2YQ%3D%3D"
       },
 
       {
-        name: "YouTube",
-        url: "#"
+        label: "YouTube",
+        url: "https://www.youtube.com/@MazhabKhatri"
       },
 
       {
-        name: "Flamingo Academy",
-        url: "#"
+        label: "Email",
+        url: "mazhab21@gmail.com"
       }
 
     ],
