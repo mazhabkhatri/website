@@ -1,254 +1,634 @@
 /* =========================================================
-   MAZHAB WEBSITE
-   Main JavaScript
-   Connects content.js → index.html
+   MAZHAB WEBSITE — MAIN JAVASCRIPT
    ========================================================= */
 
 
 /* =========================================================
-   1. INTRO
+   WAIT FOR PAGE
    ========================================================= */
 
-/* =========================================================
-   INTRO TITLE — CHARACTER HOVER EFFECT
-   ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-const introTitle = document.getElementById("intro-title");
 
-introTitle.innerHTML = "";
+  /* =======================================================
+     ELEMENTS
+     ======================================================= */
 
-[...siteContent.intro.title].forEach(character => {
+  const heroFlip = document.getElementById("hero-flip");
 
-  const span = document.createElement("span");
+  const heroName = document.getElementById("hero-name");
+  const heroTagline = document.getElementById("hero-tagline");
+  const heroIntro = document.getElementById("hero-intro");
+  const heroRole = document.getElementById("hero-role");
+  const heroDescription = document.getElementById("hero-description");
 
-  span.className = "intro-character";
+  const navigation = document.getElementById("top-navigation");
 
-  // Keep spaces visible
-  span.textContent = character === " " ? "\u00A0" : character;
+  const contentList = document.getElementById("content-list");
 
-  introTitle.appendChild(span);
+  const digitalProductsList =
+    document.getElementById("digital-products-list");
+
+  const logoDesignProjects =
+    document.getElementById("logo-design-projects");
+
+  const brandIdentityProjects =
+    document.getElementById("brand-identity-projects");
+
+  const footerName =
+    document.getElementById("footer-name");
+
+  const footerRole =
+    document.getElementById("footer-role");
+
+  const footerLinks =
+    document.getElementById("footer-links");
+
+  const copyright =
+    document.getElementById("copyright");
+
+const heroProfileButton =
+  document.getElementById("hero-profile-button");
+
+  /* =======================================================
+     HERO CONTENT
+     ======================================================= */
+
+  heroName.textContent = siteContent.hero.name;
+
+  heroTagline.textContent = siteContent.hero.tagline;
+
+  heroIntro.textContent = siteContent.hero.intro;
+
+  heroRole.textContent = siteContent.hero.role;
+
+
+  /* =======================================================
+     HERO DESCRIPTION — WORD BY WORD
+     ======================================================= */
+
+  function createDescriptionWords() {
+
+    heroDescription.innerHTML = "";
+
+    const words =
+      siteContent.hero.description.trim().split(/\s+/);
+
+    words.forEach((word, index) => {
+
+      const span =
+        document.createElement("span");
+
+      span.className = "hero-description-word";
+
+      span.textContent = word;
+
+      heroDescription.appendChild(span);
+
+    });
+
+  }
+
+  createDescriptionWords();
+
+
+  /* =======================================================
+     DESCRIPTION ANIMATION
+     ======================================================= */
+
+  function animateDescription() {
+
+    const words =
+      heroDescription.querySelectorAll(
+        ".hero-description-word"
+      );
+
+    words.forEach((word, index) => {
+
+      word.classList.remove("visible");
+
+      setTimeout(() => {
+
+        word.classList.add("visible");
+
+      }, 500 + index * 65);
+
+    });
+
+  }
+
+
+  function resetDescription() {
+
+    const words =
+      heroDescription.querySelectorAll(
+        ".hero-description-word"
+      );
+
+    words.forEach(word => {
+
+      word.classList.remove("visible");
+
+    });
+
+  }
+
+
+  /* =======================================================
+   HERO FLIP
+   ======================================================= */
+
+let heroIsFlipped = false;
+let flipLocked = false;
+
+function flipHero() {
+
+  if (heroIsFlipped || flipLocked) {
+    return;
+  }
+
+  flipLocked = true;
+  heroIsFlipped = true;
+
+  heroFlip.classList.add("is-flipped");
+
+  animateDescription();
+
+  setTimeout(() => {
+    flipLocked = false;
+  }, 650);
+}
+/* =======================================================
+   PROFILE PHOTO — REVERSE FLIP
+   ======================================================= */
+
+heroProfileButton.addEventListener("click", () => {
+
+  if (!heroIsFlipped || flipLocked) {
+    return;
+  }
+
+  flipLocked = true;
+  heroIsFlipped = false;
+
+  resetDescription();
+
+  heroFlip.classList.remove("is-flipped");
+
+  setTimeout(() => {
+    flipLocked = false;
+  }, 650);
 
 });
 
-document.getElementById("intro-description").textContent =
-  siteContent.intro.description;
+/* =======================================================
+   SCROLL DETECTION
+   ======================================================= */
 
-/* =========================================================
-   TOP NAVIGATION
-   ========================================================= */
+const FLIP_THRESHOLD = 35;
 
-const topNavigation =
-  document.getElementById("top-navigation");
+function handleScroll() {
 
-siteContent.navigation.forEach(item => {
+  const scrollPosition = window.scrollY;
 
-  const link = document.createElement("a");
-
-  link.textContent = item.name;
-  link.href = item.url;
+  /*
+    Flip only once when the user first scrolls.
+    It never reverses after flipping.
+  */
 
   if (
-    item.url &&
-    item.url !== "#" &&
-    !item.url.startsWith("#")
+    scrollPosition > FLIP_THRESHOLD &&
+    !heroIsFlipped
   ) {
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+
+    flipHero();
+
   }
 
-  topNavigation.appendChild(link);
-
-});
-
-/* =========================================================
-   2. CREATE A LINK ITEM
-   ========================================================= */
-
-function createLinkItem(item, showDescription = true) {
-
-  const wrapper = document.createElement("a");
-
-  wrapper.className = "link-item";
-  wrapper.href = item.link || "#";
-
-  // Open external links in a new tab
-  if (
-    item.link &&
-    item.link !== "#" &&
-    !item.link.startsWith("#")
-  ) {
-    wrapper.target = "_blank";
-    wrapper.rel = "noopener noreferrer";
-  }
-
-
-  /* Title */
-
-  const title = document.createElement("div");
-  title.className = "link-item-title";
-
-  title.textContent = item.title;
-
-
-  /* Arrow */
-
-  const arrow = document.createElement("span");
-  arrow.className = "arrow";
-  arrow.textContent = "→";
-
-  title.appendChild(arrow);
-
-  wrapper.appendChild(title);
-
-
-  /* Description */
-
-  if (showDescription && item.description) {
-
-    const description = document.createElement("div");
-
-    description.className = "link-item-description";
-    description.textContent = item.description;
-
-    wrapper.appendChild(description);
-  }
-
-
-  return wrapper;
 }
 
+window.addEventListener(
+  "scroll",
+  handleScroll,
+  { passive: true }
+);
 
-/* =========================================================
-   3. CREATING SECTION
-   ========================================================= */
+  /* =======================================================
+     NAVIGATION
+     ======================================================= */
 
-const creatingList =
-  document.getElementById("creating-list");
+  function renderNavigation() {
 
-siteContent.creating.forEach(item => {
+    navigation.innerHTML = "";
 
-  creatingList.appendChild(
-    createLinkItem(item, true)
-  );
+    siteContent.navigation.forEach(item => {
 
-});
+      const link =
+        document.createElement("a");
 
+      link.href = item.url;
 
-/* =========================================================
-   4. RESOURCES SECTION
-   ========================================================= */
+      link.textContent = item.label;
 
-const resourcesList =
-  document.getElementById("resources-list");
+      navigation.appendChild(link);
 
-siteContent.resources.forEach(item => {
+    });
 
-  resourcesList.appendChild(
-    createLinkItem(item, false)
-  );
+  }
 
-});
-
-
-/* =========================================================
-   5. POSTS SECTION
-   ========================================================= */
-
-const postsList =
-  document.getElementById("posts-list");
-
-siteContent.posts.forEach(item => {
-
-  postsList.appendChild(
-    createLinkItem(item, false)
-  );
-
-});
+  renderNavigation();
 
 
-/* See all posts */
+  /* =======================================================
+     NORMAL SECTION ITEMS
+     ======================================================= */
 
-const postsAllLink =
-  document.getElementById("posts-all-link");
+  function createSectionItem(item) {
 
-postsAllLink.href =
-  siteContent.postsAllLink;
+    const link =
+      document.createElement("a");
 
+    link.className = "section-item";
 
-/* Open external post archive in new tab */
+    link.href = item.url;
 
-if (
-  siteContent.postsAllLink &&
-  siteContent.postsAllLink !== "#" &&
-  !siteContent.postsAllLink.startsWith("#")
-) {
+    link.innerHTML = `
 
-  postsAllLink.target = "_blank";
-  postsAllLink.rel = "noopener noreferrer";
+      <div>
 
-}
+        <div class="section-item-title">
+          ${item.title}
+        </div>
 
+        ${
+          item.description
+            ? `
+              <div class="section-item-description">
+                ${item.description}
+              </div>
+            `
+            : ""
+        }
 
-/* =========================================================
-   6. CURRENTLY SECTION
-   ========================================================= */
+      </div>
 
-const currentlyList =
-  document.getElementById("currently-list");
+      <span class="section-item-arrow">
+        →
+      </span>
 
-siteContent.currently.forEach(text => {
+    `;
 
-  const item = document.createElement("div");
-
-  item.className = "currently-item";
-  item.textContent = text;
-
-  currentlyList.appendChild(item);
-
-});
-
-
-/* =========================================================
-   7. FOOTER
-   ========================================================= */
-
-document.getElementById("footer-name").textContent =
-  siteContent.footer.name;
-
-document.getElementById("footer-role").textContent =
-  siteContent.footer.role;
-
-document.getElementById("copyright").textContent =
-  siteContent.footer.copyright;
-
-
-/* =========================================================
-   8. FOOTER SOCIAL LINKS
-   ========================================================= */
-
-const footerLinks =
-  document.getElementById("footer-links");
-
-siteContent.footer.links.forEach(item => {
-
-  const link = document.createElement("a");
-
-  link.textContent = item.name;
-  link.href = item.url;
-
-
-  if (
-    item.url &&
-    item.url !== "#" &&
-    !item.url.startsWith("#")
-  ) {
-
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    return link;
 
   }
 
 
-  footerLinks.appendChild(link);
+  /* =======================================================
+     RENDER CONTENT
+     ======================================================= */
+
+  function renderContent() {
+
+    contentList.innerHTML = "";
+
+    siteContent.content.forEach(item => {
+
+      contentList.appendChild(
+        createSectionItem(item)
+      );
+
+    });
+
+  }
+
+  renderContent();
+
+
+  /* =======================================================
+     RENDER DIGITAL PRODUCTS
+     ======================================================= */
+
+  function renderDigitalProducts() {
+
+    digitalProductsList.innerHTML = "";
+
+    siteContent.digitalProducts.forEach(item => {
+
+      digitalProductsList.appendChild(
+        createSectionItem(item)
+      );
+
+    });
+
+  }
+
+  renderDigitalProducts();
+
+
+  /* =======================================================
+     CREATE DESIGN PROJECT
+     ======================================================= */
+
+  function createDesignProject(project) {
+
+    const link =
+      document.createElement("a");
+
+    link.className = "design-project";
+
+    link.href = project.url;
+
+    link.innerHTML = `
+
+      <img
+        src="${project.image}"
+        alt="${project.title}"
+        class="design-project-image"
+        loading="lazy"
+      >
+
+      <div class="design-project-info">
+
+        <div>
+
+          <div class="design-project-title">
+            ${project.title}
+          </div>
+
+          <div class="design-project-meta">
+            ${project.category} · ${project.year}
+          </div>
+
+        </div>
+
+        <span class="design-project-arrow">
+          →
+        </span>
+
+      </div>
+
+    `;
+
+    return link;
+
+  }
+
+
+  /* =======================================================
+     RENDER DESIGN PROJECTS
+     ======================================================= */
+
+  function renderDesignProjects() {
+
+    logoDesignProjects.innerHTML = "";
+
+    brandIdentityProjects.innerHTML = "";
+
+
+    siteContent.design.logoDesign.forEach(project => {
+
+      logoDesignProjects.appendChild(
+        createDesignProject(project)
+      );
+
+    });
+
+
+    siteContent.design.brandIdentity.forEach(project => {
+
+      brandIdentityProjects.appendChild(
+        createDesignProject(project)
+      );
+
+    });
+
+  }
+
+  renderDesignProjects();
+
+
+  /* =======================================================
+     DESIGN CATEGORY OPEN / CLOSE
+     ======================================================= */
+
+  const categoryButtons =
+    document.querySelectorAll(
+      ".design-category-button"
+    );
+
+
+  categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const category =
+        button.dataset.category;
+
+      const categoryContainer =
+        button.closest(".design-category");
+
+
+      let projects;
+
+
+      if (category === "logoDesign") {
+
+        projects = logoDesignProjects;
+
+      }
+
+      if (category === "brandIdentity") {
+
+        projects = brandIdentityProjects;
+
+      }
+
+
+      if (!projects) {
+        return;
+      }
+
+
+      const isOpen =
+        categoryContainer.classList.contains(
+          "is-open"
+        );
+
+
+      /* Close other category */
+
+      document
+        .querySelectorAll(".design-category")
+        .forEach(categoryElement => {
+
+          categoryElement.classList.remove(
+            "is-open"
+          );
+
+          const otherButton =
+            categoryElement.querySelector(
+              ".design-category-button"
+            );
+
+          if (otherButton) {
+
+            otherButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          }
+
+
+          const otherProjects =
+            categoryElement.querySelector(
+              ".design-projects"
+            );
+
+          if (otherProjects) {
+
+            otherProjects.setAttribute(
+              "aria-hidden",
+              "true"
+            );
+
+          }
+
+        });
+
+
+      /* Open clicked category */
+
+      if (!isOpen) {
+
+        categoryContainer.classList.add(
+          "is-open"
+        );
+
+        button.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+        projects.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+      }
+
+    });
+
+  });
+
+
+  /* =======================================================
+     FOOTER
+     ======================================================= */
+
+  footerName.textContent =
+    siteContent.footer.name;
+
+  footerRole.textContent =
+    siteContent.footer.role;
+
+  copyright.textContent =
+    siteContent.footer.copyright;
+
+
+  function renderFooterLinks() {
+
+    footerLinks.innerHTML = "";
+
+
+    siteContent.footer.links.forEach(item => {
+
+      const link =
+        document.createElement("a");
+
+      link.href = item.url;
+
+      link.textContent = item.label;
+
+
+      if (
+        item.url.startsWith("http")
+      ) {
+
+        link.target = "_blank";
+
+        link.rel = "noopener noreferrer";
+
+      }
+
+
+      footerLinks.appendChild(link);
+
+    });
+
+  }
+
+  renderFooterLinks();
+
+
+  /* =======================================================
+     SMOOTH INTERNAL LINKS
+     ======================================================= */
+
+  document.addEventListener(
+    "click",
+    event => {
+
+      const link =
+        event.target.closest(
+          'a[href^="#"]'
+        );
+
+      if (!link) {
+        return;
+      }
+
+
+      const targetId =
+        link.getAttribute("href");
+
+
+      if (
+        !targetId ||
+        targetId === "#"
+      ) {
+        return;
+      }
+
+
+      const target =
+        document.querySelector(
+          targetId
+        );
+
+
+      if (!target) {
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+  );
+
+
+  /* =======================================================
+     INITIAL STATE
+     ======================================================= */
+
+  resetDescription();
+
 
 });
