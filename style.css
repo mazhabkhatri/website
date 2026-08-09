@@ -610,7 +610,7 @@ img {
 footer {
   padding: 45px 42px 30px;
 
-  border-top: 1px solid #e8e8e8;
+  border-top: none;
 }
 
 .footer-inner {
@@ -618,6 +618,9 @@ footer {
   max-width: 1050px;
 
   margin: 0 auto;
+
+  padding-left: 0;
+  transform: translateX(-12px);
 }
 
 
@@ -824,7 +827,9 @@ footer {
   .copyright {
     margin-top: 45px;
   }
-
+  .footer-inner {
+    transform: none;
+  }
 }
 
 
