@@ -182,37 +182,76 @@ heroProfileButton.addEventListener("click", () => {
 });
 
 /* =======================================================
-   SCROLL DETECTION
+   SCROLL DETECTION — LOCK UNTIL FLIP FINISHES
    ======================================================= */
 
-const FLIP_THRESHOLD = 35;
+const FLIP_THRESHOLD = 10;
+
+let scrollLocked = false;
+let hasTriggeredFlip = false;
+
+
+function lockPageScroll() {
+
+  scrollLocked = true;
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+function unlockPageScroll() {
+
+  scrollLocked = false;
+
+  document.body.style.overflow = "";
+
+}
+
 
 function handleScroll() {
 
-  const scrollPosition = window.scrollY;
+  if (hasTriggeredFlip || scrollLocked) {
+    return;
+  }
 
-  /*
-    Flip only once when the user first scrolls.
-    It never reverses after flipping.
-  */
+  if (window.scrollY > FLIP_THRESHOLD) {
 
-  if (
-    scrollPosition > FLIP_THRESHOLD &&
-    !heroIsFlipped
-  ) {
+    hasTriggeredFlip = true;
+
+    lockPageScroll();
+
+    /*
+      Reset the scroll position while the animation
+      is happening so the page doesn't move underneath it.
+    */
+
+    window.scrollTo(0, 0);
 
     flipHero();
+
+    /*
+      Flip = 650ms
+      Word animation starts after 500ms.
+      Give the complete reveal enough time to finish.
+    */
+
+    setTimeout(() => {
+
+      unlockPageScroll();
+
+    }, 1800);
 
   }
 
 }
+
 
 window.addEventListener(
   "scroll",
   handleScroll,
   { passive: true }
 );
-
   /* =======================================================
      NAVIGATION
      ======================================================= */
